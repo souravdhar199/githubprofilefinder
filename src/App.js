@@ -1,10 +1,14 @@
 import './App.css';
+import { GithubProvider } from './GithubContext';
+import Profile from './profile';
 
 function App() {
   return (
-    <div className="App">
-      this is github profile finder
-    </div>
+    <GithubProvider>
+      <div className="App">
+        <Profile />
+      </div>
+    </GithubProvider>
   );
 }
 
