@@ -1,15 +1,36 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect } from "react";
+import { useReducer } from "react";
 
 const GithubContext = createContext(); //this will get return
+// Function to update the States
+function reducer(state, action) {
+    if (action.type === "i") {
+        return {
+            ...state, [action.field]: action.information
+        }
+    }
+    else if (action.type === "age") {
+        return { ...state, [action.field]: action.information }
+    }
+    else {
+        return state;
+    }
+}
+
 
 // Export a provider function
 export const GithubProvider = ({ children }) => {
-    const [users, Setusers] = useState('');
-    // Value will pass to teh componenets
+
+    const initialState = { names: " ", age: 0 };
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    console.log(state)
+
     useEffect(() => {
-        Setusers("Data from Context")
+        dispatch({ type: "i", field: "names", information: "Sourav" });
+        dispatch({ type: "age", field: "age", information: "23" });
     }, [])
-    return <GithubContext.Provider value={{ users }}>
+    return <GithubContext.Provider value={{ state }}>
         {/*Children that are passed in*/}
         {children}
     </GithubContext.Provider>
