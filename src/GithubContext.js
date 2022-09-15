@@ -4,32 +4,43 @@ import { useReducer } from "react";
 const GithubContext = createContext(); //this will get return
 // Function to update the States
 function reducer(state, action) {
-    if (action.type === "i") {
+    if (action.type === "add") {
         return {
-            ...state, [action.field]: action.information
+            ...state,
+            [action.field]: action.values,
         }
-    }
-    else if (action.type === "age") {
-        return { ...state, [action.field]: action.information }
     }
     else {
         return state;
     }
-}
 
+}
 
 // Export a provider function
 export const GithubProvider = ({ children }) => {
 
-    const initialState = { names: " ", age: 0 };
+    const initialState = { infos: [] };
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    console.log(state)
+    // Fetching the data from Github API
+    const GetGitUser = async () => {
+        const response = await fetch(`https://api.github.com/users`, {
+            headers: {
+                Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`
+            }
+        })
+
+        const datas = await response.json();
+
+        dispatch({ type: "add", field: "infos", values: datas })
+
+    }
 
     useEffect(() => {
-        dispatch({ type: "i", field: "names", information: "Sourav" });
-        dispatch({ type: "age", field: "age", information: "23" });
+        GetGitUser();
+
     }, [])
+
     return <GithubContext.Provider value={{ state }}>
         {/*Children that are passed in*/}
         {children}
