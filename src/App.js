@@ -1,6 +1,6 @@
-import './App.css';
-import { GithubProvider } from './GithubContext';
-import Profile from './profile';
+import "./App.css";
+import { GithubProvider } from "./GithubContext";
+import Profile from "./profile";
 
 function App() {
   return (
