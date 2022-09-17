@@ -4,6 +4,7 @@ import GithubContext from "../GithubContext";
 
 function Profile() {
   const { state } = useContext(GithubContext);
+  console.log(state);
   return (
     <div className="Parent">
       {state.infos.map((item) => (

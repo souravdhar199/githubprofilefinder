@@ -1,4 +1,5 @@
-import "./App.css";
+import "./styles/profile.css";
+import "./styles/search.css";
 import { GithubProvider } from "./GithubContext";
 import Profile from "./components/profile";
 import Search from "./components/Search";

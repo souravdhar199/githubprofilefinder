@@ -7,19 +7,23 @@ function Search() {
   const { setLookup } = useContext(GithubContext);
   function handelSubmit(e) {
     e.preventDefault();
-    setLookup(userType);
+    // This will prevent submitting empty form
+    if (userType.trim().length >= 1) {
+      setLookup(userType);
+    }
   }
   return (
-    <div className="form">
-      <form onSubmit={handelSubmit}>
+    <div className="Parentform">
+      <form className="form" onSubmit={handelSubmit}>
         <label>
           <input
+            className="field"
             type="text"
             name="name"
             onChange={(e) => setUserType(e.target.value)}
           />
         </label>
-        <input type="submit" value="Submit" />
+        <input className="button" type="submit" value="Submit" />
       </form>
     </div>
   );
