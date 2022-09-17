@@ -24,8 +24,13 @@
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
+  width: 200px;
 }
 
 .button:hover {
   background-color: #e7e7e7;
+}
+
+.button {
+  margin-top: 30px;
 }

@@ -4,7 +4,7 @@ import GithubContext from "../GithubContext";
 
 function Search() {
   const [userType, setUserType] = useState("");
-  const { setLookup } = useContext(GithubContext);
+  const { setLookup, dispatch } = useContext(GithubContext);
   function handelSubmit(e) {
     e.preventDefault();
     // This will prevent submitting empty form
@@ -25,6 +25,12 @@ function Search() {
         </label>
         <input className="button" type="submit" value="Submit" />
       </form>
+      <button
+        className="button"
+        onClick={() => dispatch({ type: "delete", field: "infos" })}
+      >
+        Clear
+      </button>
     </div>
   );
 }
