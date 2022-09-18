@@ -12,6 +12,11 @@ function Search() {
       setLookup(userType);
     }
   }
+
+  function handelDelete() {
+    dispatch({ type: "delete", field: "infos" }); // This is will return the initial State
+    setLookup(undefined);
+  }
   return (
     <div className="Parentform">
       <form className="form" onSubmit={handelSubmit}>
@@ -25,10 +30,7 @@ function Search() {
         </label>
         <input className="button" type="submit" value="Submit" />
       </form>
-      <button
-        className="button"
-        onClick={() => dispatch({ type: "delete", field: "infos" })}
-      >
+      <button className="button" onClick={handelDelete}>
         Clear
       </button>
     </div>
