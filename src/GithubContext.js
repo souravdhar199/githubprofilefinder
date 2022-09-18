@@ -5,6 +5,7 @@ const GithubContext = createContext(); //this will get return
 
 // Export a provider function
 export const GithubProvider = ({ children }) => {
+  const [selectedProfile, SetselectedProfile] = useState("");
   const initialState = { infos: [] };
   // Function to update the States
   function reducer(state, action) {
@@ -17,7 +18,7 @@ export const GithubProvider = ({ children }) => {
       return initialState;
     }
   }
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState); // Reducer State
   const [lookUp, setLookup] = useState();
 
   // Fetching the data from Github API
@@ -46,7 +47,15 @@ export const GithubProvider = ({ children }) => {
   }, [lookUp]);
 
   return (
-    <GithubContext.Provider value={{ state, setLookup, dispatch }}>
+    <GithubContext.Provider
+      value={{
+        state,
+        setLookup,
+        dispatch,
+        selectedProfile,
+        SetselectedProfile,
+      }}
+    >
       {/*Children that are passed in*/}
       {children}
     </GithubContext.Provider>
