@@ -21,7 +21,10 @@ function App() {
                 </>
               }
             ></Route>
-            <Route path="/about" element={<PersonalProfile />}></Route>
+            <Route
+              path="/:selectedProfile"
+              element={<PersonalProfile />}
+            ></Route>
           </Routes>
         </div>
       </GithubProvider>

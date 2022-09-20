@@ -12,7 +12,7 @@ function Search() {
       setLookup(userType);
     }
   }
-
+  //This function will remove all the State
   function handelDelete() {
     dispatch({ type: "delete", field: "infos" }); // This is will return the initial State
     setLookup(undefined);
