@@ -1,9 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useActionData } from "react-router-dom";
 import { useContext } from "react";
 import GithubContext from "../GithubContext";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export const PersonalProfile = () => {
+  const navs = useNavigate();
+  const params = useParams();
   const { selectedProfile } = useContext(GithubContext);
+  useEffect(() => {
+    if (selectedProfile !== params.names) {
+      navs("*");
+      return;
+    }
+  });
   return (
     <>
       <Link to="/">Home</Link>

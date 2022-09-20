@@ -3,6 +3,7 @@ import "./styles/search.css";
 import { GithubProvider } from "./GithubContext";
 import Profile from "./components/profile";
 import Search from "./components/Search";
+import PageNotFound from "./components/pageNotFound";
 import { PersonalProfile } from "./components/peronalProfile";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -13,6 +14,7 @@ function App() {
         <div className="App">
           <Routes>
             <Route
+              exact
               path="/"
               element={
                 <>
@@ -22,9 +24,16 @@ function App() {
               }
             ></Route>
             <Route
-              path="/:selectedProfile"
+              exact
+              path="/about/:names"
               element={<PersonalProfile />}
             ></Route>
+
+            <Route />
+
+            <Route path="*" element={<PageNotFound />} />
+
+            <Route />
           </Routes>
         </div>
       </GithubProvider>

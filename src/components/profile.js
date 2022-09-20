@@ -10,7 +10,7 @@ function Profile() {
   function profileClick(names) {
     console.log(names);
     SetselectedProfile(names);
-    navs(`/${names}`);
+    navs(`/about/${names}`);
   }
   return (
     <div className="Parent">
