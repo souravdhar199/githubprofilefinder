@@ -5,11 +5,17 @@ const GithubContext = createContext(); //this will get return
 
 // Export a provider function
 export const GithubProvider = ({ children }) => {
+  //This State will store profile login when user clicks any profile in home page
   const [selectedProfile, SetselectedProfile] = useState("");
-  const initialState = { infos: [] };
+  const initialState = { infos: [], userInfo: [] };
   // Function to update the States
   function reducer(state, action) {
     if (action.type === "add") {
+      return {
+        ...state,
+        [action.field]: action.values,
+      };
+    } else if (action.type === "addUser") {
       return {
         ...state,
         [action.field]: action.values,
@@ -45,6 +51,22 @@ export const GithubProvider = ({ children }) => {
   useEffect(() => {
     GetGitUser(lookUp);
   }, [lookUp]);
+
+  //Get Single user Data based on selectedProfile
+  const getUserData = async (name) => {
+    const response = await fetch(`https://api.github.com/users/${name}`, {
+      headers: { Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}` },
+    });
+
+    const userData = await response.json();
+
+    dispatch({ type: "addUser", field: "userInfo", values: userData });
+  };
+
+  //Only fetch when user Click any certain profile
+  useEffect(() => {
+    getUserData(selectedProfile);
+  }, [selectedProfile]);
 
   return (
     <GithubContext.Provider
