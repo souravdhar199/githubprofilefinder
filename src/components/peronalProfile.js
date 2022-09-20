@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useContext } from "react";
 import GithubContext from "../GithubContext";
 import { useParams } from "react-router-dom";
@@ -18,9 +17,27 @@ export const PersonalProfile = () => {
   });
   return (
     <>
-      <Link to="/">Home</Link>
-      <div>
-        <h1>This is user personal profile {selectedProfile}</h1>
+      <div className="Container">
+        <button onClick={() => navs("/")}>Go Back Home</button>
+        <div className="section1">
+          <div className="image">
+            {" "}
+            <img src={state.userInfo.avatar_url} />
+          </div>
+          <div className="you">
+            <h1>
+              Hi I am{" "}
+              {state.userInfo.name == null
+                ? state.userInfo.login
+                : state.userInfo.name}
+            </h1>
+            <p>{state.userInfo.bio}</p>
+
+            <button>
+              <a href={state.userInfo.html_url}>Take me to</a>
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );
