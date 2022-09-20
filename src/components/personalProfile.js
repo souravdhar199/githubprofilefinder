@@ -34,7 +34,6 @@ export const PersonalProfile = () => {
                 : state.userInfo.name}
             </h1>
             <p className="bio">{state.userInfo.bio}</p>
-
             <button>
               <a
                 href={state.userInfo.html_url}

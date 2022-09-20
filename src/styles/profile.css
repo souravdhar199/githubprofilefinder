@@ -1,7 +1,6 @@
 .Parent {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  padding-left: 9%;
+  grid-template-columns: auto auto auto;
   justify-content: center;
 }
 
