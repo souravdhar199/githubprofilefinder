@@ -13,3 +13,26 @@ h1 {
   font-size: 38px;
   font-style: italic;
 }
+
+@media (max-width: 833px) {
+  h1 {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 753px) {
+  h1 {
+    font-size: 30px;
+  }
+  .image1 {
+    max-width: 80px;
+  }
+}
+@media (max-width: 400px) {
+  h1 {
+    font-size: 13px;
+  }
+  .image1 {
+    max-width: 29px;
+  }
+}
