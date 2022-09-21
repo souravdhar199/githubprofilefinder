@@ -1,6 +1,6 @@
 # Github Profile Finder
 Using react created an app where user can look up any people's github profile by their name/username.
-## API used
+## API
 [https://docs.github.com/en/rest}
 
 ### Some Screen Shots
