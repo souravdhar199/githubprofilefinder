@@ -4,13 +4,14 @@ import GithubContext from "../GithubContext";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import CountUp from "react-countup";
+import UserRepo from "./userRepo";
 
 export const PersonalProfile = () => {
   const navs = useNavigate();
   const params = useParams();
   const { selectedProfile, state } = useContext(GithubContext);
 
-  console.log("Personal Profile", state);
+  console.log("State Data", state.userRepo);
   useEffect(() => {
     if (selectedProfile !== params.names) {
       navs("*");
@@ -79,6 +80,7 @@ export const PersonalProfile = () => {
             </>
           </p>
         </div>
+        <UserRepo />
       </div>
     </>
   );

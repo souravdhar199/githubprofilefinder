@@ -7,7 +7,7 @@ const GithubContext = createContext(); //this will get return
 export const GithubProvider = ({ children }) => {
   //This State will store profile login when user clicks any profile in home page
   const [selectedProfile, SetselectedProfile] = useState("");
-  const initialState = { infos: [], userInfo: [] };
+  const initialState = { infos: [], userInfo: [], userRepo: [] };
   // Function to update the States
   function reducer(state, action) {
     if (action.type === "add") {
@@ -19,6 +19,11 @@ export const GithubProvider = ({ children }) => {
       return {
         ...state,
         [action.field]: action.values,
+      };
+    } else if (action.type === "addRepo") {
+      return {
+        ...state,
+        [action.field]: action.valuess,
       };
     } else {
       return initialState;
@@ -43,7 +48,6 @@ export const GithubProvider = ({ children }) => {
       );
 
       const datas = await response.json();
-
       dispatch({ type: "add", field: "infos", values: datas.items });
     }
   };
@@ -63,9 +67,24 @@ export const GithubProvider = ({ children }) => {
     dispatch({ type: "addUser", field: "userInfo", values: userData });
   };
 
-  //Only fetch when user Click any certain profile
+  //Get user repo's
+  const getUserRepo = async (name) => {
+    const userRepo = await fetch(`https://api.github.com/users/${name}/repos`, {
+      headers: {
+        Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
+      },
+    });
+
+    const repos = await userRepo.json();
+    console.log("actual", repos);
+
+    dispatch({ type: "addRepo", field: "userRepo", valuess: [...repos] });
+  };
+
+  //Only fetch when user/userrepo when user Click any certain profile
   useEffect(() => {
     getUserData(selectedProfile);
+    getUserRepo(selectedProfile);
   }, [selectedProfile]);
 
   return (
