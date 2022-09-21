@@ -1,0 +1,18 @@
+.childsRepo {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.repoParent {
+  padding: 0px 4rem 0rem 4rem;
+}
+.childsRepo:hover {
+  background-color: #e7e7e7;
+}
+.link1 {
+  font-size: 15px;
+  margin-right: 5px;
+}
+.infos {
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+}
